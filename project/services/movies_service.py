@@ -20,6 +20,9 @@ class MoviesService:
     def get_all(self, page: Optional[int] = None, status: Optional[str] = None) -> list[Movie]:
         return self.dao.get_all(page=page, status=status)
 
+    def get_all_by_list(self, ids_list: list, page: Optional[int] = None) -> list[Movie]:
+        return self.dao.get_all_by_list(ids_list=ids_list, page=page)
+
     # def create(self, data):
     #     return self.dao.create(data)
     #

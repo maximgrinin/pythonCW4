@@ -29,8 +29,3 @@ user: Model = api.model('Пользователь', {
     'surname': fields.String(max_length=255, example='Вазовски'),
     'favourite_genre': fields.Integer(example=1),
 })
-
-favorites: Model = api.model('Избранное', {
-    'user_id': fields.Integer(required=True, example=1),
-    'movie_id': fields.Integer(required=True, example=1),
-})
