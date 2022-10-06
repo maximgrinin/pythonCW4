@@ -39,11 +39,11 @@ class DevelopmentConfig(BaseConfig):
 class ProductionConfig(BaseConfig):
     DEBUG = False
     # TODO: дополнить конфиг когда пойдем на прод
+    SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"  # Временно, пока не решили как пойдем в продакшен
 
 
 class ConfigFactory:
-    # flask_env = 'development'  # для отладки
-    flask_env = os.getenv('FLASK_ENV')
+    flask_env = os.getenv('FLASK_ENV', 'development')  # для отладки
 
     @classmethod
     def get_config(cls) -> Type[BaseConfig]:
