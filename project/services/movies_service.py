@@ -22,16 +22,3 @@ class MoviesService:
 
     def get_all_by_list(self, ids_list: list, page: Optional[int] = None) -> list[Movie]:
         return self.dao.get_all_by_list(ids_list=ids_list, page=page)
-
-    # def create(self, data):
-    #     return self.dao.create(data)
-    #
-    # def update(self, mid, data):
-    #     # Тут вся логика апдейта
-    #     movie = self.get_item(mid)
-    #     [setattr(movie, key, value) for key, value in data.items()]
-    #     self.dao.update(movie)
-    #     return self.dao
-    #
-    # def delete(self, mid):
-    #     self.dao.delete(mid)
