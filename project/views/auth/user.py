@@ -3,9 +3,14 @@ from flask_restx import Namespace, Resource, abort
 import jwt
 from flask import current_app
 from project.container import user_service
-from project.setup.api.models import user
+# from project.setup.api.models import user
+from project.setup.db.user import UserSchema
 
 user_ns = Namespace('user')
+
+# Создаем экземпляры схем сериализации для одной и нескольких сущностей
+user_schema = UserSchema()
+users_schema = UserSchema(many=True)
 
 
 # Декоратор для проверки авторизации
@@ -34,9 +39,10 @@ def auth_required(func):
 @user_ns.route('/')
 class UserView(Resource):
     @auth_required
-    @user_ns.marshal_with(user, code=200, description='OK')
+    # @user_ns.marshal_with(user, code=200, description='OK')
     def get(self, email=None):
-        return user_service.get_by_email(email)
+        return user_schema.dump(user_service.get_by_email(email))
+        # return user_service.get_by_email(email)
 
     @auth_required
     def patch(self, email=None):

@@ -1,8 +1,9 @@
 # Здесь модель SQLAlchemy для сущности, также могут быть дополнительные методы работы с моделью
 # (но не с базой, с базой мы работаем в классе DAO)
-# from marshmallow import Schema, fields
+from marshmallow import Schema, fields
 from sqlalchemy import Column, String, Integer
 from project.setup.db.base import Base
+# from project.setup.db.genre import GenreSchema
 from project.setup.db.setup_db import db
 
 
@@ -17,11 +18,12 @@ class User(Base):
     genre = db.relationship("Genre")
 
 
-# # Схема для сериализации Пользователя
-# class UserSchema(Schema):
-#     id = fields.Int(dump_only=True)
-#     email = fields.Str()
-#     password = fields.Str()
-#     name = fields.Str()
-#     surname = fields.Str()
-#     favorite_genre = fields.Str()
+# Схема для сериализации Пользователя
+class UserSchema(Schema):
+    id = fields.Int(dump_only=True)
+    email = fields.Str()
+    name = fields.Str()
+    surname = fields.Str()
+    favourite_genre = fields.Int()
+    # favourite_genre = fields.Nested(GenreSchema)
+    # genre = fields.Nested(GenreSchema)
